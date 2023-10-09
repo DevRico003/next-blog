@@ -9,10 +9,15 @@ export default function RootLayout({
 }) {
   const header = (
     <header>
-      <div className="text-center bg-slate-800 p-8 my-6 rounded-md">
+      <div className="text-center bg-slate-800 p-8 my-6 rounded-md container mx-auto flex justify-between">
         <Link href="/">
-          <h1 className="text-2xl text-white font-bold mt-4">Blog</h1>
+          <h1 className="text-2xl text-white font-bold">Blog</h1>
         </Link>
+        <div className="space-x-4">
+            <Link href="/new" className="text-2xl text-white font-bold mt-4">
+              Create Post
+            </Link>
+          </div>
       </div>
     </header>
   );
@@ -30,6 +35,7 @@ export default function RootLayout({
       <head />
       <body>
         <div className="mx-auto  max-w-2xl px-6">
+
           {header}
           {children}
           {footer}
