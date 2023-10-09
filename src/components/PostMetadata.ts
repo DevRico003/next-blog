@@ -7,8 +7,12 @@ export interface PostMetadata {
   // Das Datum des Blogposts als String. Zum Beispiel: "2023-10-09"
   date: string
   
+  
   // Der Untertitel des Blogposts als String. Zum Beispiel: "Ein Einblick in mein Leben"
   subtitle: string
+
+  // Das Datum des Blogposts als String. Zum Beispiel: "2023-10-09"
+  author: string
   
   // Der Slug ist eine URL-freundliche Version des Titels. Zum Beispiel: "mein-erster-blogpost"
   slug: string
