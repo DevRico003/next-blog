@@ -1,47 +1,49 @@
-import { NextRequest, NextResponse } from "next/server";
-import fs from 'fs';
-import path from 'path';
+// Importieren der erforderlichen Module
+import { NextRequest, NextResponse } from "next/server"
+import fs from 'fs'
+import path from 'path'
 
+// Definieren der POST-Methode für die API-Route
 export const POST = async (request: NextRequest, response: NextResponse) => {
   try {
-    // Parse the request body
-    const body = await request.json();
+    // Parsen des Anfragekörpers in ein JSON-Objekt
+    const body = await request.json()
 
-    // Destructure the relevant fields from the request body
-    const { title, subtitle, author, date, content } = body;
+    // Extrahieren der relevanten Felder aus dem Anfragekörper
+    const { title, subtitle, author, date, content } = body
 
-    // Create a new post object
+    // Erstellen eines neuen Post-Objekts
     const post = {
       title,
       subtitle,
       author,
       date,
       content,
-    };
+    }
 
-    // Create the Markdown content
+    // Erstellen des Markdown-Inhalts für den neuen Post
     const mdContent = `---
 title: "${title}"
 subtitle: "${subtitle}"
 author: "${author}"
 date: "${date}"
 ---
-Autor: ${author}
-\n\n
-\n\n
-Content: ${content}
-`;
+${content}
+`
 
-    // Define the path for the new .md file
-    const filePath = path.join(process.cwd(), 'src', 'posts', `${title.replace(/ /g, '_')}.md`);
+    // Definieren des Pfads für die neue .md-Datei
+    // Der Titel wird so formatiert, dass Leerzeichen durch Unterstriche ersetzt werden
+    const filePath = path.join(process.cwd(), 'src', 'posts', `${title.replace(/ /g, '_')}.md`)
 
-    // Write the Markdown content to a new .md file
-    fs.writeFileSync(filePath, mdContent);
+    // Schreiben des Markdown-Inhalts in eine neue .md-Datei
+    fs.writeFileSync(filePath, mdContent)
 
-    // Respond with a success message
-    return NextResponse.json({ success: true, post: post }, { status: 200 });
+    // Senden einer Erfolgsmeldung als Antwort
+    return NextResponse.json({ success: true, post: post }, { status: 200 })
   } catch (error) {
-    console.log(error);
-    return NextResponse.error();
+    // Protokollieren des Fehlers, falls einer auftritt
+    console.log(error)
+    // Senden einer Fehlermeldung als Antwort
+    return NextResponse.error()
   }
-};
+}
