@@ -15,7 +15,8 @@ export default function NewPost() {
   const [content, setContent] = useState('')
 
   // Funktion, die beim Absenden des Formulars aufgerufen wird
-  const handleSubmit = async (e) => {
+  const handleSubmit = async (e: React.FormEvent) => {
+
     // Verhindert das Standardverhalten des Formulars
     e.preventDefault()
 
